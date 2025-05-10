@@ -1,0 +1,9 @@
+// Основной файл стилей для платформы квизов КВИЗУМ
+
+// Импорт основных стилей
+@import './main.scss';
+@import './stats.scss';
+@import './tests-page.scss';
+@import './create-test.scss';
+
+// Не импортируем quiz.scss здесь, так как он уже импортирован в main.scss

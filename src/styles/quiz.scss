@@ -1,0 +1,714 @@
+// Стили для компонентов тестов
+
+// Список тестов
+.quiz-list-container {
+  margin-bottom: 40px;
+  
+  .quiz-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+    
+    h2 {
+      margin: 0;
+      color: $primary-color;
+      font-size: 1.8rem;
+    }
+    
+    .quiz-filters {
+      display: flex;
+      gap: 10px;
+      
+      .filter-btn {
+        background-color: $light-color;
+        border: 1px solid $gray-color;
+        color: $text-color;
+        padding: 8px 15px;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: $gray-color;
+        }
+        
+        &.active {
+          background-color: $primary-color;
+          color: $white;
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+  
+  .no-quizzes {
+    padding: 40px;
+    text-align: center;
+    background-color: $light-color;
+    border-radius: $border-radius;
+    margin-top: 20px;
+    
+    p {
+      color: $text-color;
+      font-size: 1.1rem;
+    }
+  }
+  
+  .quiz-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    
+    .quiz-card {
+      @include card;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      
+      &.active {
+        border-top: 4px solid $primary-color;
+      }
+      
+      &.completed {
+        border-top: 4px solid $accent-color;
+      }
+      
+      &.upcoming {
+        border-top: 4px solid $secondary-color;
+      }
+      
+      &.expired {
+        border-top: 4px solid $dark-color;
+        opacity: 0.7;
+      }
+      
+      .quiz-card-header {
+        padding: 15px 20px;
+        border-bottom: 1px solid $gray-color;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        h3 {
+          margin: 0;
+          font-size: 1.2rem;
+          color: $dark-color;
+        }
+        
+        .quiz-score {
+          background-color: $accent-color;
+          color: $dark-color;
+          font-weight: 700;
+          padding: 5px 10px;
+          border-radius: 20px;
+          font-size: 0.9rem;
+        }
+      }
+      
+      .quiz-card-body {
+        padding: 15px 20px;
+        flex: 1;
+        
+        p {
+          margin-top: 0;
+          margin-bottom: 15px;
+          color: $text-color;
+          font-size: 0.95rem;
+        }
+        
+        .quiz-details {
+          display: flex;
+          gap: 15px;
+          margin-bottom: 15px;
+          
+          .quiz-detail-item {
+            .detail-label {
+              display: block;
+              font-size: 0.8rem;
+              color: $secondary-color;
+              margin-bottom: 3px;
+            }
+            
+            .detail-value {
+              font-weight: 600;
+              color: $dark-color;
+            }
+          }
+        }
+        
+        .quiz-dates {
+          font-size: 0.9rem;
+          
+          .quiz-date-item {
+            margin-bottom: 5px;
+            
+            .date-label {
+              color: $secondary-color;
+              margin-right: 5px;
+            }
+            
+            .date-value {
+              color: $dark-color;
+            }
+          }
+        }
+      }
+      
+      .quiz-card-footer {
+        padding: 15px 20px;
+        border-top: 1px solid $gray-color;
+        display: flex;
+        justify-content: center;
+        
+        .start-quiz-btn, .view-results-btn {
+          @include button;
+          display: block;
+          text-align: center;
+          width: 100%;
+          text-decoration: none;
+        }
+        
+        .view-results-btn {
+          background-color: $accent-color;
+          color: $dark-color;
+          
+          &:hover {
+            background-color: darken($accent-color, 10%);
+          }
+        }
+        
+        .upcoming-quiz-btn, .expired-quiz-btn {
+          width: 100%;
+          padding: 10px;
+          border-radius: $border-radius-sm;
+          text-align: center;
+          border: none;
+          cursor: not-allowed;
+        }
+        
+        .upcoming-quiz-btn {
+          background-color: $light-color;
+          color: $secondary-color;
+        }
+        
+        .expired-quiz-btn {
+          background-color: $light-color;
+          color: $dark-color;
+        }
+      }
+    }
+  }
+}
+
+// Сессия теста
+.quiz-session-container {
+  @include card;
+  padding: 0;
+  margin-bottom: 40px;
+  
+  .quiz-header {
+    background-color: $primary-color;
+    color: $white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    
+    .quiz-timer {
+      font-size: 1.2rem;
+      font-weight: 600;
+      
+      .timer-warning {
+        color: $secondary-color;
+        animation: pulse 1s infinite;
+      }
+    }
+  }
+  
+  .quiz-progress {
+    padding: 15px 20px;
+    background-color: $light-color;
+    
+    .progress-bar {
+      height: 8px;
+      background-color: $gray-color;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      
+      .progress-fill {
+        height: 100%;
+        background-color: $primary-color;
+        transition: width 0.3s ease;
+      }
+    }
+    
+    .progress-text {
+      text-align: right;
+      font-size: 0.9rem;
+      color: $text-color;
+    }
+  }
+  
+  .quiz-content {
+    padding: 30px 20px;
+    
+    .question-container {
+      .question-text {
+        font-size: 1.3rem;
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: $dark-color;
+      }
+      
+      .question-hint {
+        color: $secondary-color;
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+      
+      .options-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        
+        .option-item {
+          display: flex;
+          align-items: center;
+          padding: 15px;
+          border: 1px solid $gray-color;
+          border-radius: $border-radius-sm;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            background-color: $light-color;
+          }
+          
+          &.selected {
+            border-color: $primary-color;
+            background-color: rgba($primary-color, 0.05);
+          }
+          
+          .option-marker, .option-checkbox {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: $light-color;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: 600;
+            color: $text-color;
+            flex-shrink: 0;
+          }
+          
+          .option-checkbox {
+            border-radius: 4px;
+            border: 2px solid $gray-color;
+            
+            .checkbox-checked {
+              color: $primary-color;
+              font-weight: 700;
+            }
+          }
+          
+          .option-text {
+            flex: 1;
+          }
+        }
+      }
+      
+      .matching-container {
+        .matching-items {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          
+          .matching-pair {
+            display: flex;
+            align-items: center;
+            
+            .left-item {
+              flex: 1;
+              padding: 10px 15px;
+              background-color: $light-color;
+              border-radius: $border-radius-sm;
+              font-weight: 500;
+            }
+            
+            .matching-arrow {
+              margin: 0 15px;
+              color: $secondary-color;
+              font-size: 1.2rem;
+            }
+            
+            .right-item-select {
+              flex: 1;
+              padding: 10px;
+              border: 1px solid $gray-color;
+              border-radius: $border-radius-sm;
+              
+              &:focus {
+                outline: none;
+                border-color: $primary-color;
+              }
+            }
+          }
+        }
+      }
+      
+      .text-input-container {
+        .text-answer-input {
+          width: 100%;
+          padding: 15px;
+          border: 1px solid $gray-color;
+          border-radius: $border-radius-sm;
+          resize: vertical;
+          min-height: 150px;
+          font-family: inherit;
+          font-size: 1rem;
+          
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+  
+  .quiz-navigation {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid $gray-color;
+    
+    .nav-btn {
+      padding: 10px 20px;
+      border-radius: $border-radius-sm;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      
+      &.prev-btn {
+        background-color: $light-color;
+        color: $text-color;
+        
+        &:hover:not(:disabled) {
+          background-color: $gray-color;
+        }
+        
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+      
+      &.next-btn {
+        background-color: $primary-color;
+        color: $white;
+        
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+      
+      &.submit-btn {
+        background-color: $accent-color;
+        color: $dark-color;
+        font-weight: 600;
+        
+        &:hover {
+          background-color: darken($accent-color, 10%);
+        }
+      }
+    }
+  }
+  
+  .quiz-questions-nav {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+    .question-nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $light-color;
+      border: 1px solid $gray-color;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: $gray-color;
+      }
+      
+      &.active {
+        background-color: $primary-color;
+        color: $white;
+        border-color: $primary-color;
+      }
+      
+      &.answered {
+        background-color: $light-color;
+        border-color: $primary-color;
+        color: $primary-color;
+        
+        &.active {
+          background-color: $primary-color;
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+// Результаты теста
+.quiz-results-container {
+  @include card;
+  margin-bottom: 40px;
+  
+  .results-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid $gray-color;
+    padding-bottom: 20px;
+    
+    h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: $primary-color;
+    }
+    
+    .completion-date {
+      color: $secondary-color;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .score-overview {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 30px;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border-radius: 50%;
+        border: 5px solid;
+        border-color: inherit;
+        opacity: 0.2;
+      }
+      
+      &.excellent {
+        background-color: rgba($accent-color, 0.2);
+        color: $accent-color;
+        border-color: $accent-color;
+      }
+      
+      &.good {
+        background-color: rgba($primary-color, 0.2);
+        color: $primary-color;
+        border-color: $primary-color;
+      }
+      
+      &.average {
+        background-color: rgba(#ff9800, 0.2);
+        color: #ff9800;
+        border-color: #ff9800;
+      }
+      
+      &.poor {
+        background-color: rgba($secondary-color, 0.2);
+        color: $secondary-color;
+        border-color: $secondary-color;
+      }
+      
+      .score-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+    }
+    
+    .score-details {
+      flex: 1;
+      
+      .score-detail-item {
+        margin-bottom: 10px;
+        
+        .detail-label {
+          display: block;
+          color: $secondary-color;
+          font-size: 0.9rem;
+          margin-bottom: 5px;
+        }
+        
+        .detail-value {
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: $dark-color;
+        }
+      }
+    }
+  }
+  
+  .feedback-section {
+    background-color: $light-color;
+    padding: 20px;
+    border-radius: $border-radius-sm;
+    margin-bottom: 30px;
+    
+    h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: $primary-color;
+      font-size: 1.2rem;
+    }
+    
+    .feedback-content {
+      color: $text-color;
+      line-height: 1.6;
+    }
+  }
+  
+  .results-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    
+    .back-to-dashboard-btn, .retake-quiz-btn {
+      padding: 10px 20px;
+      border-radius: $border-radius-sm;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .back-to-dashboard-btn {
+      background-color: $light-color;
+      color: $text-color;
+      
+      &:hover {
+        background-color: $gray-color;
+      }
+    }
+    
+    .retake-quiz-btn {
+      background-color: $primary-color;
+      color: $white;
+      
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+  
+  .performance-analysis {
+    h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: $primary-color;
+      font-size: 1.2rem;
+    }
+    
+    .performance-chart {
+      margin-bottom: 30px;
+      
+      .chart-placeholder {
+        .chart-bar-container {
+          margin-bottom: 15px;
+          
+          .chart-category {
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: $dark-color;
+          }
+          
+          .chart-bar {
+            height: 25px;
+            background-color: $light-color;
+            border-radius: $border-radius-sm;
+            position: relative;
+            overflow: hidden;
+            
+            .chart-fill {
+              height: 100%;
+              background-color: $primary-color;
+              transition: width 1s ease;
+            }
+            
+            .chart-value {
+              position: absolute;
+              right: 10px;
+              top: 50%;
+              transform: translateY(-50%);
+              color: $dark-color;
+              font-weight: 600;
+              font-size: 0.9rem;
+            }
+          }
+        }
+      }
+    }
+    
+    .improvement-suggestions {
+      h4 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: $dark-color;
+        font-size: 1.1rem;
+      }
+      
+      .suggestions-list {
+        padding-left: 20px;
+        
+        li {
+          margin-bottom: 10px;
+          color: $text-color;
+        }
+      }
+    }
+  }
+}
+
+// Анимации
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
