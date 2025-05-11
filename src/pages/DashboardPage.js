@@ -4,6 +4,12 @@ import ProfileSection from '../components/Dashboard/ProfileSection';
 import UserStatsSection from '../components/Dashboard/UserStatsSection';
 import QuizList from '../components/Quiz/QuizList';
 import DashboardNav from '../components/Dashboard/DashboardNav';
+import AssignTestsToGroups from '../components/Teacher/AssignTestsToGroups';
+import AssignedTestsList from '../components/Teacher/AssignedTestsList';
+import RoleBasedContent from '../components/Common/RoleBasedContent';
+
+// Импортируем стили для компонента назначенных тестов
+import '../styles/assignedTestsList.scss';
 
 const DashboardPage = () => {
   const { currentUser } = useAuth();
@@ -18,7 +24,13 @@ const DashboardPage = () => {
             <ProfileSection />
             <UserStatsSection />
           </div>
-          <QuizList />
+          <RoleBasedContent roles={['student']}>
+            <QuizList />
+          </RoleBasedContent>
+          <RoleBasedContent roles={['admin', 'teacher']}>
+            <AssignTestsToGroups />
+            <AssignedTestsList />
+          </RoleBasedContent>
         </div>
       </div>
     </div>

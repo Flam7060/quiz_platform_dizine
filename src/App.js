@@ -12,13 +12,15 @@ import PrivateRoute from './components/Common/PrivateRoute';
 import { AuthProvider } from './contexts/AuthContext';
 import { GroupProvider } from './contexts/GroupContext';
 import { QuizProvider } from './contexts/QuizContext';
+import { CollapseProvider } from './contexts/CollapseContext';
 
 function App() {
   return (
     <AuthProvider>
       <GroupProvider>
         <QuizProvider>
-          <Router>
+          <CollapseProvider>
+            <Router>
             <div className="App">
               <Routes>
                 {/* Публичные маршруты */}
@@ -42,7 +44,8 @@ function App() {
                 <Route path="*" element={<div className="not-found">Страница не найдена</div>} />
               </Routes>
             </div>
-          </Router>
+            </Router>
+          </CollapseProvider>
         </QuizProvider>
       </GroupProvider>
     </AuthProvider>

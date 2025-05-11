@@ -1,0 +1,295 @@
+.assigned-tests-section {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  overflow: hidden;
+  max-width: 100%;
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eaeaea;
+    
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+    
+    .tabs {
+      display: flex;
+      
+      .tab {
+        padding: 8px 16px;
+        background: none;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #666;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background-color: #f5f5f5;
+        }
+        
+        &.active {
+          background-color: #e6f7ff;
+          color: #1890ff;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  
+  .assigned-tests-list {
+    padding: 12px;
+    max-height: 500px;
+    overflow-y: auto;
+    
+    .assigned-test-card {
+      background-color: #fafafa;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-left: 4px solid #ccc;
+      position: relative;
+      transition: all 0.2s ease;
+      
+      &.test {
+        border-left-color: #1890ff;
+      }
+      
+      &.quiz {
+        border-left-color: #52c41a;
+      }
+      
+      &.homework {
+        border-left-color: #722ed1;
+      }
+      
+      .test-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        
+        .test-type-badge {
+          background-color: #f0f0f0;
+          padding: 3px 6px;
+          border-radius: 4px;
+          font-size: 11px;
+          font-weight: 500;
+          margin-right: 8px;
+          color: #666;
+        }
+        
+        .test-title {
+          margin: 0;
+          font-size: 15px;
+          color: #333;
+          flex: 1;
+        }
+        
+        .selected-users-indicator {
+          margin-left: 8px;
+          color: #1890ff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          svg {
+            font-size: 14px;
+          }
+        }
+      }
+      
+      .test-details {
+        margin-bottom: 10px;
+        
+        .test-dates {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-bottom: 8px;
+          
+          &.compact {
+            gap: 8px;
+            
+            .date-item {
+              font-size: 12px;
+              
+              svg {
+                font-size: 12px;
+              }
+            }
+          }
+          
+          .date-item {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #666;
+            
+            svg {
+              margin-right: 5px;
+              color: #999;
+            }
+          }
+        }
+        
+        .test-info-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          
+          .test-groups {
+            &.compact {
+              font-size: 12px;
+              color: #666;
+              display: flex;
+              align-items: center;
+              
+              svg {
+                margin-right: 5px;
+                font-size: 12px;
+                color: #999;
+              }
+            }
+          }
+          
+          .test-progress {
+            flex: 1;
+            margin-left: 15px;
+            
+            &.compact {
+              .progress-label {
+                font-size: 12px;
+                margin-bottom: 3px;
+              }
+              
+              .progress-bar {
+                height: 6px;
+              }
+            }
+            
+            .progress-label {
+              font-size: 13px;
+              color: #666;
+              margin-bottom: 5px;
+              text-align: right;
+            }
+            
+            .progress-bar {
+              height: 8px;
+              background-color: #f0f0f0;
+              border-radius: 4px;
+              overflow: hidden;
+              
+              .progress-fill {
+                height: 100%;
+                background-color: #1890ff;
+                border-radius: 4px;
+                transition: width 0.3s ease;
+              }
+            }
+          }
+        }
+      }
+      
+      .selected-users-popup {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 10;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        width: 220px;
+        max-width: 100%;
+        margin-top: 5px;
+        
+        .popup-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 8px;
+          padding-bottom: 5px;
+          border-bottom: 1px solid #eaeaea;
+          font-size: 13px;
+          color: #333;
+          font-weight: 500;
+          
+          svg {
+            color: #1890ff;
+            margin-right: 5px;
+          }
+        }
+        
+        .users-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          max-height: 150px;
+          overflow-y: auto;
+          
+          li {
+            padding: 4px 0;
+            font-size: 12px;
+            color: #666;
+            border-bottom: 1px solid #f5f5f5;
+            
+            &:last-child {
+              border-bottom: none;
+            }
+          }
+        }
+      }
+      
+      .test-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        
+        button {
+          padding: 4px 10px;
+          border-radius: 4px;
+          font-size: 12px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          
+          &.view-results-button {
+            background-color: #fff;
+            border: 1px solid #d9d9d9;
+            color: #666;
+            
+            &:hover {
+              border-color: #1890ff;
+              color: #1890ff;
+            }
+          }
+          
+          &.edit-test-button {
+            background-color: #1890ff;
+            border: 1px solid #1890ff;
+            color: #fff;
+            
+            &:hover {
+              background-color: #40a9ff;
+              border-color: #40a9ff;
+            }
+          }
+        }
+      }
+    }
+    
+    .no-tests-message {
+      padding: 20px;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+    }
+  }
+}

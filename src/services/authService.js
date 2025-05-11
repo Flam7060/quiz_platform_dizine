@@ -29,6 +29,24 @@ const users = [
     role: 'student',
     photoURL: null,
     groups: ['2']
+  },
+  {
+    id: '4',
+    email: 'student1@quizum.ru',
+    password: 'student123',
+    displayName: 'Иванов Иван',
+    role: 'student',
+    photoURL: null,
+    groups: ['2']
+  },
+  {
+    id: '5',
+    email: 'student2@quizum.ru',
+    password: 'student123',
+    displayName: 'Петров Петр',
+    role: 'student',
+    photoURL: null,
+    groups: ['3']
   }
 ];
 

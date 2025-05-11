@@ -268,4 +268,389 @@
       }
     }
   }
+  
+  // Стили для статистики преподавателя
+  .teacher-stats-header {
+    margin-bottom: 30px;
+    
+    .teacher-tabs {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+      
+      .teacher-tab {
+        padding: 10px 20px;
+        border-radius: $border-radius-sm;
+        background-color: $white;
+        border: 1px solid $gray-color;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        i {
+          font-size: 1rem;
+          color: $primary-color;
+        }
+        
+        &:hover {
+          background-color: $gray-color;
+        }
+        
+        &.active {
+          background-color: $primary-color;
+          color: $white;
+          border-color: $primary-color;
+          
+          i {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+  
+  // Стили для вкладки "Группы"
+  .teacher-groups-section {
+    .stats-cards {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      
+      .group-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        
+        .group-card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          
+          h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            color: $dark-color;
+          }
+          
+          .student-count {
+            font-size: 0.85rem;
+            color: lighten($text-color, 20%);
+            background-color: $gray-color;
+            padding: 4px 8px;
+            border-radius: 20px;
+          }
+        }
+        
+        .group-card-stats {
+          display: flex;
+          justify-content: space-between;
+          
+          .group-stat {
+            text-align: center;
+            
+            .group-stat-value {
+              font-size: 1.6rem;
+              font-weight: 700;
+              color: $dark-color;
+              margin-bottom: 5px;
+            }
+            
+            .group-stat-label {
+              font-size: 0.8rem;
+              color: lighten($text-color, 20%);
+            }
+          }
+        }
+        
+        .view-group-button {
+          padding: 8px;
+          background-color: $primary-color;
+          color: $white;
+          border: none;
+          border-radius: $border-radius-sm;
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+        }
+      }
+    }
+    
+    .attention-section {
+      background-color: $white;
+      border-radius: $border-radius-sm;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+      
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $dark-color;
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+      
+      .attention-students-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        
+        .attention-student-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-bottom: 15px;
+          border-bottom: 1px solid $gray-color;
+          
+          &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+          }
+          
+          .student-info {
+            .student-name {
+              font-size: 1rem;
+              font-weight: 500;
+              color: $dark-color;
+              margin-bottom: 5px;
+            }
+            
+            .student-group {
+              font-size: 0.85rem;
+              color: lighten($text-color, 20%);
+            }
+          }
+          
+          .student-stats {
+            display: flex;
+            gap: 20px;
+            
+            .student-score, .student-activity {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              
+              .score-value, .activity-value {
+                font-size: 1rem;
+                font-weight: 600;
+                color: $dark-color;
+              }
+              
+              .score-label, .activity-label {
+                font-size: 0.75rem;
+                color: lighten($text-color, 20%);
+              }
+            }
+            
+            .student-score .score-value {
+              color: $danger-color;
+            }
+          }
+          
+          .contact-student-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: $primary-color;
+            color: $white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            
+            &:hover {
+              background-color: darken($primary-color, 10%);
+            }
+            
+            i {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+    
+    .group-performance-chart {
+      background-color: $white;
+      border-radius: $border-radius-sm;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $dark-color;
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+      
+      .horizontal-chart {
+        height: auto;
+        
+        .horizontal-bars {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          
+          .horizontal-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            
+            .horizontal-bar-label {
+              width: 100px;
+              font-size: 0.9rem;
+              color: $dark-color;
+              text-align: right;
+            }
+            
+            .horizontal-bar-wrapper {
+              flex: 1;
+              height: 30px;
+              background-color: $gray-color;
+              border-radius: $border-radius-sm;
+              overflow: hidden;
+              
+              .horizontal-bar {
+                height: 100%;
+                background: linear-gradient(to right, $primary-color, lighten($primary-color, 15%));
+                border-radius: $border-radius-sm;
+                position: relative;
+                transition: width 0.5s ease;
+                
+                .horizontal-bar-value {
+                  position: absolute;
+                  right: 10px;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  font-size: 0.8rem;
+                  font-weight: 600;
+                  color: $white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Стили для вкладки "Тесты"
+  .teacher-tests-section {
+    .stats-cards {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      
+      .test-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        
+        .test-card-header {
+          h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            color: $dark-color;
+          }
+        }
+        
+        .test-card-stats {
+          display: flex;
+          justify-content: space-between;
+          
+          .test-stat {
+            text-align: center;
+            
+            .test-stat-value {
+              font-size: 1.6rem;
+              font-weight: 700;
+              color: $dark-color;
+              margin-bottom: 5px;
+            }
+            
+            .test-stat-label {
+              font-size: 0.8rem;
+              color: lighten($text-color, 20%);
+            }
+          }
+        }
+        
+        .test-card-actions {
+          display: flex;
+          gap: 10px;
+          
+          .view-results-button, .edit-test-button {
+            flex: 1;
+            padding: 8px;
+            border-radius: $border-radius-sm;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+          
+          .view-results-button {
+            background-color: $primary-color;
+            color: $white;
+            border: none;
+            
+            &:hover {
+              background-color: darken($primary-color, 10%);
+            }
+          }
+          
+          .edit-test-button {
+            background-color: $white;
+            color: $dark-color;
+            border: 1px solid $gray-color;
+            
+            &:hover {
+              background-color: $gray-color;
+            }
+          }
+        }
+      }
+    }
+    
+    .test-performance-chart {
+      margin-bottom: 30px;
+    }
+    
+    .create-test-section {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      
+      .create-test-button {
+        padding: 12px 25px;
+        background-color: $success-color;
+        color: $white;
+        border: none;
+        border-radius: $border-radius-sm;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        
+        i {
+          font-size: 1.1rem;
+        }
+        
+        &:hover {
+          background-color: darken($success-color, 10%);
+        }
+      }
+    }
+  }
 }

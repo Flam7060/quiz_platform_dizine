@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import RoleBasedContent from '../Common/RoleBasedContent';
 
 const DashboardNav = () => {
   const { currentUser, logout } = useAuth();
@@ -61,22 +62,27 @@ const DashboardNav = () => {
             <span>Тесты</span>
           </Link>
           
-          {/* Для прототипирования показываем все ссылки */}
-          <Link 
-            to="/create-test" 
-            className={`dashboard-nav-link ${isActive('/create-test') ? 'active' : ''}`}
-          >
-            <i className="fas fa-plus-circle"></i>
-            <span>Создать тест</span>
-          </Link>
+          {/* Создание тестов доступно только для администраторов и преподавателей */}
+          <RoleBasedContent roles={['admin', 'teacher']}>
+            <Link 
+              to="/create-test" 
+              className={`dashboard-nav-link ${isActive('/create-test') ? 'active' : ''}`}
+            >
+              <i className="fas fa-plus-circle"></i>
+              <span>Создать тест</span>
+            </Link>
+          </RoleBasedContent>
           
-          <Link 
-            to="/admin" 
-            className={`dashboard-nav-link ${isActive('/admin') ? 'active' : ''}`}
-          >
-            <i className="fas fa-cog"></i>
-            <span>Управление</span>
-          </Link>
+          {/* Управление доступно только для администраторов */}
+          <RoleBasedContent roles="admin">
+            <Link 
+              to="/admin" 
+              className={`dashboard-nav-link ${isActive('/admin') ? 'active' : ''}`}
+            >
+              <i className="fas fa-cog"></i>
+              <span>Управление</span>
+            </Link>
+          </RoleBasedContent>
         </div>
       </div>
       
