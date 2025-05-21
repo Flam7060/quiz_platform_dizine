@@ -54,13 +54,7 @@ const DashboardNav = () => {
             <span>Главная</span>
           </Link>
           
-          <Link 
-            to="/tests" 
-            className={`dashboard-nav-link ${isActive('/tests') ? 'active' : ''}`}
-          >
-            <i className="fas fa-tasks"></i>
-            <span>Тесты</span>
-          </Link>
+          {/* Раздел тестов полностью убран из навигации */}
           
           {/* Создание тестов доступно только для администраторов и преподавателей */}
           <RoleBasedContent roles={['admin', 'teacher']}>

@@ -1,0 +1,142 @@
+.design-hub {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Roboto', sans-serif;
+  
+  .hub-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+  }
+  
+  .hub-section {
+    margin-bottom: 3rem;
+    
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #eee;
+      color: #444;
+    }
+    
+    &.inactive-section {
+      opacity: 0.7;
+      
+      h2 {
+        color: #888;
+        font-style: italic;
+      }
+    }
+    
+    .hub-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      
+      .hub-link {
+        display: flex;
+        align-items: center;
+        padding: 1.5rem;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s ease;
+        border-left: 5px solid #ddd;
+        
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        &.inactive {
+          background-color: #f5f5f5;
+          border-left-color: #ccc;
+          color: #888;
+          cursor: not-allowed;
+          
+          &:hover {
+            transform: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+          }
+          
+          .hub-link-content {
+            h3 {
+              color: #888;
+            }
+            
+            p {
+              color: #aaa;
+            }
+          }
+        }
+        
+        &.student {
+          border-left-color: #4caf50;
+        }
+        
+        &.teacher {
+          border-left-color: #2196f3;
+        }
+        
+        &.admin {
+          border-left-color: #f44336;
+        }
+        
+        .hub-link-icon {
+          font-size: 2rem;
+          margin-right: 1rem;
+          min-width: 40px;
+          text-align: center;
+        }
+        
+        .hub-link-content {
+          h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+          }
+          
+          p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    padding: 1rem;
+    
+    .hub-header {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+    }
+    
+    .hub-section {
+      .hub-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

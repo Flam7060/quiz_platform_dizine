@@ -9,13 +9,37 @@ import '../../styles/groupStudentsPopup.scss';
 const UserStatsSection = () => {
   const { currentUser, ROLES } = useAuth();
   
+  // Здесь можно добавить дополнительные состояния при необходимости
+  
   // Демо-данные статистики для студента
   const [userStats, setUserStats] = useState({
     totalQuizzes: 5,
     completedQuizzes: 3,
-    totalQuestions: 50,
     correctAnswers: 42,
-    successRate: 84
+    totalQuestions: 50,
+    successRate: 84,
+    avgResponseTime: 18.5,
+    bestResponseTime: 12.3,
+    currentStreak: 7,
+    bestStreak: 12,
+    totalCorrectStreaks: 3,
+    // Данные об успеваемости в группе
+    groupStats: {
+      groupName: 'Группа 101',
+      groupAvg: 76,
+      position: 3,
+      totalStudents: 25,
+      topStudentScore: 92,
+      bottomStudentScore: 45
+    },
+    // Данные об успеваемости среди всех групп
+    allGroupsStats: {
+      totalGroups: 3,
+      totalStudents: 65,
+      overallAvg: 74,
+      position: 8,
+      percentile: 88 // процентиль успеваемости
+    }
   });
   
   // Демо-данные статистики для преподавателя
@@ -81,40 +105,99 @@ const UserStatsSection = () => {
           </div>
         </div>
         
-        <div className="stats-cards">
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="fas fa-tasks"></i>
-            </div>
-            <div className="stat-content">
-              <div className="stat-value">{userStats.completedQuizzes}/{userStats.totalQuizzes}</div>
-              <div className="stat-label">Пройдено тестов</div>
+        <div className="stats-cards-container">
+          <div className="stats-cards-header">
+            <h4>Общая статистика</h4>
+            <div className="stats-time-period">
+              <span>За последний месяц</span>
+              <i className="fas fa-calendar-alt"></i>
             </div>
           </div>
           
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="fas fa-check-circle"></i>
+          <div className="stats-cards">
+            <div className="stat-card with-ranking">
+              <div className="stat-header">
+                <div className="stat-icon ranking">
+                  <i className="fas fa-trophy"></i>
+                </div>
+                <div className="stat-title">Место в группе</div>
+              </div>
+              <div className="stat-content">
+                <div className="stat-main-value">{userStats.groupStats.position} из {userStats.groupStats.totalStudents}</div>
+                <div className="stat-divider"></div>
+                <div className="ranking-indicator">
+                  <div className="position-badge">
+                    <span className="position-number">{userStats.groupStats.position}</span>
+                    <div className="position-medal">
+                      {userStats.groupStats.position === 1 && <i className="fas fa-medal gold"></i>}
+                      {userStats.groupStats.position === 2 && <i className="fas fa-medal silver"></i>}
+                      {userStats.groupStats.position === 3 && <i className="fas fa-medal bronze"></i>}
+                    </div>
+                  </div>
+                </div>
+                <div className="stat-secondary">
+                  <span className="stat-label">Успеваемость:</span>
+                  <span className="stat-value">{userStats.successRate}%</span>
+                </div>
+              </div>
             </div>
-            <div className="stat-content">
-              <div className="stat-value">{userStats.correctAnswers}/{userStats.totalQuestions}</div>
-              <div className="stat-label">Правильных ответов</div>
+            
+            <div className="stat-card with-progress">
+              <div className="stat-header">
+                <div className="stat-icon time">
+                  <i className="fas fa-clock"></i>
+                </div>
+                <div className="stat-title">Время ответа</div>
+              </div>
+              <div className="stat-content">
+                <div className="stat-main-value">{userStats.avgResponseTime} сек.</div>
+                <div className="stat-divider"></div>
+                <div className="stat-progress">
+                  <div 
+                    className={`progress-bar ${userStats.avgResponseTime < 15 ? 'fast' : userStats.avgResponseTime < 25 ? 'medium' : 'slow'}`}
+                    style={{ 
+                      width: `${Math.min(100, Math.max(0, 100 - (userStats.avgResponseTime / 30) * 100))}%`
+                    }}
+                  ></div>
+                </div>
+                <div className="stat-secondary">
+                  <span className="stat-label">Лучшее время:</span>
+                  <span className="stat-value">{userStats.bestResponseTime} сек.</span>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div className="stat-card">
-            <div className="stat-icon">
-              <i className="fas fa-chart-line"></i>
-            </div>
-            <div className="stat-content">
-              <div className="stat-value">{userStats.successRate}%</div>
-              <div className="stat-label">Успеваемость</div>
+            
+            <div className="stat-card with-streak">
+              <div className="stat-header">
+                <div className="stat-icon streak">
+                  <i className="fas fa-fire"></i>
+                </div>
+                <div className="stat-title">Стрик</div>
+              </div>
+              <div className="stat-content">
+                <div className="stat-main-value">{userStats.currentStreak} подряд</div>
+                <div className="stat-divider"></div>
+                <div className="streak-indicator">
+                  <div className="streak-flames">
+                    {[...Array(Math.min(5, userStats.currentStreak))].map((_, i) => (
+                      <i key={i} className="fas fa-fire" style={{ fontSize: `${100 + i * 20}%`, opacity: 0.7 + i * 0.06 }}></i>
+                    ))}
+                  </div>
+                </div>
+                <div className="stat-secondary">
+                  <span className="stat-label">Лучший стрик:</span>
+                  <span className="stat-value">{userStats.bestStreak} подряд</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         
-        <div className="stats-chart">
-          <h4>Динамика успеваемости</h4>
+        {/* Динамика успеваемости */}
+        <div className="stats-chart-container">
+          <div className="stats-chart-header">
+            <h4>Динамика успеваемости</h4>
+          </div>
           <div className="chart-placeholder">
             <div className="chart-bars">
               <div className="chart-bar" style={{ height: '60%' }}>

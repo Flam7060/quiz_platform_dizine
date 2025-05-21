@@ -1,22 +1,19 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 // Компонент для защиты маршрутов, требующих аутентификации
+// В режиме дизайна защита отключена для удобства просмотра всех страниц
 const PrivateRoute = () => {
-  const { currentUser, loading } = useAuth();
+  const { loading } = useAuth();
   
   // Пока проверяем аутентификацию, показываем загрузку
   if (loading) {
     return <div className="loading">Загрузка...</div>;
   }
   
-  // Если пользователь не аутентифицирован, перенаправляем на страницу входа
-  if (!currentUser) {
-    return <Navigate to="/login" />;
-  }
-  
-  // Если пользователь аутентифицирован, отображаем защищенный контент
+  // Защита отключена - всегда разрешаем доступ к защищенным маршрутам
+  // для удобства работы с дизайном
   return <Outlet />;
 };
 

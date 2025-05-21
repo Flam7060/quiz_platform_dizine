@@ -1912,6 +1912,21 @@ a {
         background-color: $primary-color;
         color: $white;
       }
+      
+      &.disabled {
+        color: $gray-color;
+        cursor: not-allowed;
+        opacity: 0.6;
+        
+        &:hover {
+          background-color: transparent;
+        }
+        
+        &.active {
+          background-color: rgba($primary-color, 0.3);
+          color: rgba($white, 0.7);
+        }
+      }
     }
   }
   

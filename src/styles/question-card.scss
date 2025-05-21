@@ -1,0 +1,514 @@
+// Стили для компонента карточки вопроса
+
+// Определение переменных
+$primary-color: #4a6bff;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$danger-color: #dc3545;
+$warning-color: #ffc107;
+$info-color: #17a2b8;
+$text-primary: #333333;
+$text-secondary: #6c757d;
+$border-color: #e9ecef;
+$bg-light: #f8f9fa;
+
+// Основные стили карточки вопроса
+.question-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-top: 4px solid $primary-color;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+  
+  &.correct-answer {
+    border-top-color: $success-color;
+  }
+  
+  &.incorrect-answer {
+    border-top-color: $danger-color;
+  }
+  
+  // Заголовок вопроса
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: rgba($primary-color, 0.05);
+    border-bottom: 1px solid $border-color;
+    
+    .question-number {
+      font-weight: 500;
+      color: $primary-color;
+    }
+    
+    .question-points {
+      font-size: 0.9rem;
+      color: $text-secondary;
+      background-color: rgba($primary-color, 0.1);
+      padding: 0.3rem 0.6rem;
+      border-radius: 12px;
+    }
+  }
+  
+  // Содержимое вопроса
+  .question-content {
+    padding: 1.5rem;
+    
+    .question-text {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: $text-primary;
+      line-height: 1.5;
+    }
+    
+    .question-image {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      
+      img {
+        max-width: 100%;
+        max-height: 300px;
+        border-radius: 8px;
+      }
+    }
+  }
+  
+  // Варианты ответов
+  .question-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    
+    .question-option {
+      display: flex;
+      align-items: flex-start;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      background-color: $bg-light;
+      transition: background-color 0.2s ease;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: rgba($primary-color, 0.05);
+      }
+      
+      input[type="radio"],
+      input[type="checkbox"] {
+        margin-top: 0.2rem;
+        margin-right: 0.8rem;
+        cursor: pointer;
+      }
+      
+      label {
+        flex: 1;
+        cursor: pointer;
+      }
+      
+      &.correct-answer {
+        background-color: rgba($success-color, 0.1);
+        border: 1px solid rgba($success-color, 0.3);
+      }
+      
+      &.incorrect-answer {
+        background-color: rgba($danger-color, 0.1);
+        border: 1px solid rgba($danger-color, 0.3);
+      }
+    }
+  }
+  
+  // Текстовый ввод
+  .question-text-input {
+    margin-top: 1rem;
+    
+    input[type="text"] {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid $border-color;
+      border-radius: 8px;
+      font-size: 1rem;
+      
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+      }
+    }
+    
+    &.correct-answer input {
+      border-color: $success-color;
+      background-color: rgba($success-color, 0.05);
+    }
+    
+    &.incorrect-answer input {
+      border-color: $danger-color;
+      background-color: rgba($danger-color, 0.05);
+    }
+  }
+  
+  // Обратная связь
+  .question-feedback {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid $border-color;
+    
+    &.correct {
+      background-color: rgba($success-color, 0.1);
+    }
+    
+    &.incorrect {
+      background-color: rgba($danger-color, 0.1);
+    }
+    
+    .feedback-icon {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      
+      .correct & {
+        color: $success-color;
+      }
+      
+      .incorrect & {
+        color: $danger-color;
+      }
+    }
+    
+    .feedback-text {
+      flex: 1;
+      
+      .correct & {
+        color: darken($success-color, 10%);
+      }
+      
+      .incorrect & {
+        color: darken($danger-color, 10%);
+      }
+      
+      .feedback-explanation {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: $text-secondary;
+      }
+    }
+  }
+}
+
+// Стили для режима теста
+.test-mode {
+  .question-card {
+    border-top-color: $primary-color;
+  }
+  
+  .question-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    
+    .nav-button {
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      
+      &.prev-button {
+        background-color: $secondary-color;
+        color: white;
+        
+        &:hover {
+          background-color: darken($secondary-color, 10%);
+        }
+        
+        i {
+          margin-right: 0.5rem;
+        }
+      }
+      
+      &.next-button {
+        background-color: $primary-color;
+        color: white;
+        
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+        
+        i {
+          margin-left: 0.5rem;
+        }
+      }
+      
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  .questions-progress {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    
+    .progress-item {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: $bg-light;
+      border: 1px solid $border-color;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: rgba($primary-color, 0.1);
+      }
+      
+      &.current {
+        background-color: $primary-color;
+        color: white;
+        border-color: $primary-color;
+      }
+      
+      &.answered {
+        background-color: rgba($primary-color, 0.2);
+        border-color: $primary-color;
+      }
+      
+      &.flagged {
+        position: relative;
+        
+        &:after {
+          content: '';
+          position: absolute;
+          top: -4px;
+          right: -4px;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: $warning-color;
+        }
+      }
+    }
+  }
+}
+
+// Стили для режима квиза
+.quiz-mode {
+  .question-card {
+    border-top-color: $info-color;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .quiz-timer {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    
+    .timer-bar {
+      height: 8px;
+      background-color: $border-color;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      
+      .timer-progress {
+        height: 100%;
+        background-color: $info-color;
+        border-radius: 4px;
+        transition: width 1s linear;
+        
+        &.warning {
+          background-color: $warning-color;
+        }
+        
+        &.danger {
+          background-color: $danger-color;
+        }
+      }
+    }
+    
+    .timer-text {
+      font-size: 0.9rem;
+      color: $text-secondary;
+    }
+  }
+  
+  .quiz-navigation {
+    text-align: center;
+    margin-top: 1.5rem;
+    
+    .quiz-button {
+      padding: 0.8rem 2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      background-color: $info-color;
+      color: white;
+      
+      &:hover {
+        background-color: darken($info-color, 10%);
+      }
+      
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Стили для режима повторения
+.flashcard-mode {
+  .question-card {
+    border-top-color: $warning-color;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    perspective: 1000px;
+    height: 350px;
+    
+    .flashcard {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      
+      &.flipped {
+        transform: rotateY(180deg);
+      }
+      
+      .flashcard-front,
+      .flashcard-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .flashcard-front {
+        .question-content {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+        }
+      }
+      
+      .flashcard-back {
+        transform: rotateY(180deg);
+        background-color: rgba($warning-color, 0.05);
+        
+        .answer-content {
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+          
+          .answer-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: $text-primary;
+          }
+          
+          .answer-text {
+            font-size: 1.1rem;
+            color: $text-primary;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+  
+  .flashcard-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    
+    .flip-button {
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      background-color: $warning-color;
+      color: darken($warning-color, 30%);
+      
+      &:hover {
+        background-color: darken($warning-color, 10%);
+        color: white;
+      }
+    }
+    
+    .rating-buttons {
+      display: flex;
+      gap: 0.5rem;
+      
+      .rating-button {
+        padding: 0.6rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s ease;
+        
+        &.easy {
+          background-color: $success-color;
+          color: white;
+          
+          &:hover {
+            background-color: darken($success-color, 10%);
+          }
+        }
+        
+        &.medium {
+          background-color: $warning-color;
+          color: darken($warning-color, 30%);
+          
+          &:hover {
+            background-color: darken($warning-color, 10%);
+            color: white;
+          }
+        }
+        
+        &.hard {
+          background-color: $danger-color;
+          color: white;
+          
+          &:hover {
+            background-color: darken($danger-color, 10%);
+          }
+        }
+      }
+    }
+  }
+}
